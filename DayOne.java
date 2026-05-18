@@ -12,7 +12,9 @@ public class DayOne {
 //        zigzag();
         
 //        dayOfWeek();
-    	pyramid();
+    	//pyramid()
+dayOfWeek2();
+
     }
     
     private static int blackjack(int a, int b) {
@@ -80,31 +82,27 @@ public class DayOne {
 	    			case 1:
 	    				System.out.println("Monday");
 	    				isvalid = true;
-	    				break;
 	    			case 2:
 	    				System.out.println("Tuesday");
 	    				isvalid = true;
-	    				break;
+	    				;
 	    			case 3:
 	    				System.out.println("Wednesday");
 	    				isvalid = true;
-	    				break;
+	    				
 	    			case 4:
 	    				System.out.println("Thursday");
 	    				isvalid = true;
-	    				break;
 	    			case 5:
 	    				System.out.println("Friday");
 	    				isvalid = true;
-	    				break;
+
 	    			case 6:
 	    				System.out.println("Saturday");
 	    				isvalid = true;
-	    				break;
 	    			case 7:
 	    				System.out.println("Sunday");
 	    				isvalid = true;
-	    				break;
 	    				
     				default:
     					System.out.println("Invalid day number");
@@ -112,6 +110,61 @@ public class DayOne {
     			}
     					
     		}while(!isvalid);
+    		
+    		sc.close();
+    	}
+    	
+    	//Alternate solution Pattern Matching
+    	private static void dayOfWeek2() {
+    		Scanner sc = new Scanner(System.in);
+    		int num;
+    		do {
+    			System.out.println("Enter numbers 1 to 7:");
+    			num = sc.nextInt();
+    			if(num==1) {
+        			System.out.println("Monday");
+        			;
+        			break;
+        		}
+        		else if(num==2) {
+        			System.out.println("Tuesday");
+        		
+        			break;
+        		}
+        		else if(num==3) {
+        			System.out.println("Wednesday");
+        	
+        			break;
+
+        		}
+        		else if(num==4) {
+        			System.out.println("Thursday");
+        		
+        			break;
+
+        		}
+        		else if(num==5) {
+        			System.out.println("Friday");
+        			break;
+
+        		}
+        		else if(num==6) {
+        			System.out.println("Saturday");
+        			break;
+
+        		}
+        		else if(num==7) {
+        			System.out.println("Sunday");
+        			break;
+
+        		}else {
+        			System.out.println("Enter only numbers 1-7");
+        			continue;
+        		}
+    			
+    		}while(true);
+    		
+    		
     		
     		sc.close();
     	}
