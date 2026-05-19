@@ -1,5 +1,4 @@
-package dayone;
-
+package Challenges;
 import java.util.Scanner;
 
 public class Zigzag {
