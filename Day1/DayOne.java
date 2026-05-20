@@ -11,8 +11,9 @@ public class DayOne {
     //	zigzag();
 //        
        //dayOfWeek();
-//pyramid();
-  	dayOfWeek2();
+pyramid();
+  	//dayOfWeek2();
+//    	dayOfWeek2();
 
     }
     
@@ -111,53 +112,65 @@ public class DayOne {
     	
     	//Alternate solution Pattern Matching
     	private static void dayOfWeek2() {
+    		 System.out.println("Enter a number: ");
     		Scanner sc = new Scanner(System.in);
-    		int num;
-    		do {
-    			System.out.println("Enter numbers 1 to 7:");
-    			num = sc.nextInt();
-    			if(num==1) {
-        			System.out.println("Monday");
-        			;
-        			break;
-        		}
-        		else if(num==2) {
-        			System.out.println("Tuesday");
-        		
-        			break;
-        		}
-        		else if(num==3) {
-        			System.out.println("Wednesday");
-        	
-        			break;
-
-        		}
-        		else if(num==4) {
-        			System.out.println("Thursday");
-        		
-        			break;
-
-        		}
-        		else if(num==5) {
-        			System.out.println("Friday");
-        			break;
-
-        		}
-        		else if(num==6) {
-        			System.out.println("Saturday");
-        			break;
-
-        		}
-        		else if(num==7) {
-        			System.out.println("Sunday");
-        			break;
-
-        		}else {
-        			System.out.println("Enter only numbers 1-7");
-        			continue;
-        		}
-    			
-    		}while(true);
+    		int num = sc.nextInt();
+    		
+    		switch(num) {
+    		
+    		case 1 -> System.out.println("Monday");
+    		case 2 -> System.out.println("Tuesday");
+    		case 3 -> System.out.println("Wednesday");
+    		case 4 -> System.out.println("Thursday");
+    		case 5 -> System.out.println("Friday");
+    		case 6 -> System.out.println("Saturday");
+    		case 7 -> System.out.println("Sunday");
+    		default -> System.out.println("Invalid day number");
+    		}
+//    		do {
+//    			System.out.println("Enter numbers 1 to 7:");
+//    			num = sc.nextInt();
+//    			if(num==1) {
+//        			System.out.println("Monday");
+//        			break;
+//        		}
+//        		else if(num==2) {
+//        			System.out.println("Tuesday");
+//        		
+//        			break;
+//        		}
+//        		else if(num==3) {
+//        			System.out.println("Wednesday");
+//        	
+//        			break;
+//
+//        		}
+//        		else if(num==4) {
+//        			System.out.println("Thursday");
+//        		
+//        			break;
+//
+//        		}
+//        		else if(num==5) {
+//        			System.out.println("Friday");
+//        			break;
+//
+//        		}
+//        		else if(num==6) {
+//        			System.out.println("Saturday");
+//        			break;
+//
+//        		}
+//        		else if(num==7) {
+//        			System.out.println("Sunday");
+//        			break;
+//
+//        		}else {
+//        			System.out.println("Enter only numbers 1-7");
+//        			continue;
+//        		}
+//    			
+//    		}while(true);
     		
     		
     		
@@ -170,21 +183,25 @@ public class DayOne {
     		Scanner sc = new Scanner(System.in);
     		do {
     			System.out.println("Enter a number between 1 and 20:");
-    			if(sc.hasNextInt()){
-    				num = sc.nextInt();
-    				if(num<21 && num >0) {
-    					isvalid = true;
-    				}else {
-    					System.out.println("Error: Enter numbers between 1 to 20");
-    				}
-    				
-    			}else {
-    				System.out.println("Error: Enter numbers between 1 to 20");
-    				sc.next();
+    			num = sc.nextInt();
+    			if(num<21 && num >0) {
+    				isvalid = true;
     			}
+//    			if(sc.hasNextInt()){
+//    				num = sc.nextInt();
+//    				if(num<21 && num >0) {
+//    					isvalid = true;
+//    				}else {
+//    					System.out.println("Error: Enter numbers between 1 to 20");
+//    				}
+//    				
+//    			}else {
+//    				System.out.println("Error: Enter numbers between 1 to 20");
+//    				sc.next();
+//    			}
     		}while(!isvalid);
     		sc.close();
-    		int counter = 0;
+    		
     		for(int i =1;i<=num;i++) {
     			for(int j=1;j<=i;j++ ) {
     				System.out.print(j);
