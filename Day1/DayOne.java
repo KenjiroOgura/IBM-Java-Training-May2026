@@ -1,4 +1,4 @@
-import java.util.InputMismatchException;
+package Day1;
 import java.util.Scanner;
 public class DayOne {
     public static void main(String[] args) {
