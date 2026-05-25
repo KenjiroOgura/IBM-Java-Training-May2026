@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -49,6 +50,9 @@ public class Main {
                 System.out.println(" - " + emp.getName()+"("+emp.getSalary()+")");
             }
 }
+
+    employeeMapByDept.forEach( (k, v) -> { System.out.println(k + " -> " + v); } );
+
 
     System.out.println("\n=== Highest paid per Department ===");
     for (String deptName: employeeMapByDept.keySet()) {

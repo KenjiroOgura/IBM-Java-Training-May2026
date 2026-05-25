@@ -1,0 +1,16 @@
+Log Summary Report
+-------------------
+Total Entries: 5
+ERROR: 3
+INFO: 1
+WARN: 1
+
+Error messages:
+ User logged in
+ Database connection failed
+ High memory usage detected
+ Timeout while reading data
+ Timeout while reading data
+
+Earliest Timestamp: 2024-05-10 14:22:01
+Latest Timestamp: 2024-05-15 14:22:15
