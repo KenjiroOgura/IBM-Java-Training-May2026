@@ -1,4 +1,4 @@
-package Day5;
+
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -22,18 +22,22 @@ public class LogFileAnalyzer {
             int warnCount=0;
             int errorCount=0;
             int total=0;
+            int other=0;
             List<String> messages = new ArrayList<>();
             List<LocalDateTime> ts = new ArrayList<>();
         try {
             BufferedReader br = new BufferedReader(new FileReader("Server.log"));
-            BufferedWriter bw = new BufferedWriter(new FileWriter("Results.txt"));
+            BufferedWriter bw = new BufferedWriter(new FileWriter("summary.txt"));
 
             String line;
             List <String> data = new ArrayList<>();
             Map <String,Integer> logger = new HashMap<>();
             
             while((line=br.readLine())!=null){
-                if(!line.contains("[")){
+                if(!line.contains("[")||!line.contains("]")){
+                    throw new MalformedLogEntryException(line);
+                }
+                if(!line.contains("INFO:")&&!line.contains("ERROR:")&&!line.contains("WARN:")){
                     throw new MalformedLogEntryException(line);
                 }
                 // System.out.println("CURRENT LINE: "+line);
@@ -53,7 +57,7 @@ public class LogFileAnalyzer {
                     logger.put("WARN", warnCount);
                     //System.out.println("ADDED WARN");
                 }else{
-                    System.out.println("NO INFO");
+                    throw new MalformedLogEntryException(line);
                 }
                 data.add(line);
                 

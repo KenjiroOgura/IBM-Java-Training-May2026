@@ -1,4 +1,4 @@
-package Day5;
+
 public class MalformedLogEntryException extends Exception{
         String line;
 
