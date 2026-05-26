@@ -1,4 +1,5 @@
 
+
 public class MalformedLogEntryException extends Exception{
         String line;
 
