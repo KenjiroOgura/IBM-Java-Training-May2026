@@ -1,6 +1,7 @@
 
 
 
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -69,9 +70,12 @@ public class LogFileAnalyzer {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             for (String  i: data) {
                 words = i.split(":");
+                if(words[2].contains("ERROR")){
+                    messages.add(words[3]);
+                }
                 
                 // System.out.println(words[3]);
-                messages.add(words[3]);
+                
                 //  
                 
                 ts.add(LocalDateTime.parse(i.substring(1,20),formatter));

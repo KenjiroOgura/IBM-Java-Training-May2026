@@ -6,93 +6,15 @@ INFO: 68
 WARN: 10
 
 Error messages:
- Server started successfully
- Configuration file loaded
- Database connection established
- Listening on port 8080
- User 'admin' logged in
- High memory usage detected (75%)
- Scheduled backup started
- Backup completed successfully
  Failed to connect to external API
- Retrying API connection
- API connection restored
- User 'guest' logged in
- Slow response detected on endpoint /login
- Cache cleared successfully
- Session timeout set to 30 minutes
  NullPointerException in UserService.java line 87
- Restarting UserService
- UserService restarted successfully
- New user registration
- Email verification sent to 'jdoe@example.com'
- Disk space usage at 85%
- Cleanup job started
- Cleanup job completed
- User 'admin' updated system settings
  Timeout while reading data from database
- Database reconnection attempt #1
- Database connection restored
- User 'support' logged in
- High CPU usage detected (82%)
- Load balancer redistributed traffic
- Request processed successfully
- User 'guest' logged out
- Session cleanup completed
  FileNotFoundException in ConfigLoader.java line 45
- Default configuration applied
- User 'admin' logged out
- Server health check passed
- API latency above threshold (1200ms)
- API latency normalized
- New connection from IP 192.168.1.45
- Authentication successful for 'user123'
  Unauthorized access attempt detected
- Security alert logged
- Firewall rules updated
- User 'devops' deployed new build
- Build version 1.2.3 deployed successfully
- Deprecated API call detected
- API migration scheduled
- User 'qa' started test suite
- Test suite completed with 2 warnings
  Assertion failed in TestCase #45
- Test results uploaded
- System metrics collected
- Memory usage exceeded 90%
- Garbage collection triggered
- Memory usage normalized
- User 'intern' accessed dashboard
- Dashboard data refreshed
  Unable to parse JSON response from API
- Retrying request to API
- API response parsed successfully
- User 'manager' exported report
- Report saved to /reports/summary.csv
- Report generation took longer than expected
- Report generation optimized
- Scheduled task executed
- Task completed successfully
  SMTP server not responding
- Email queue paused
- Email service restarted
- Email queue resumed
- User 'support' sent password reset link
- Password reset successful for 'user123'
- Multiple failed login attempts detected
- Account 'guest' temporarily locked
- System audit started
- Audit completed successfully
  Audit log write failure
- Audit log retry succeeded
- Server uptime
- Health check completed
- High network latency detected
- Network latency normalized
- User 'admin' initiated shutdown
- Active sessions terminated
- Server shutting down
- Shutdown completed successfully
 
 Earliest Timestamp: 2024-05-10 09:00:00
 Latest Timestamp: 2024-05-10 09:04:18

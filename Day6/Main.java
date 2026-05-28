@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Main {
     static int idNum=0;
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
 
         String url = "jdbc:postgresql://localhost:5432/test1";
         String user = "Ken";
@@ -29,8 +29,6 @@ public class Main {
         }
         Scanner sc = new Scanner(System.in);
         
-        
-        String choice="";
         boolean quit = false;
         do { 
         System.out.println("===MENU===");
@@ -40,7 +38,7 @@ public class Main {
         System.out.println("[D]elete");
         System.out.println("[Q]uit\n");
         System.out.print("Enter choice:");
-        choice = sc.nextLine().toUpperCase();
+        String choice = sc.nextLine().toUpperCase();
 
         switch(choice){
             case "A":
@@ -48,7 +46,6 @@ public class Main {
                 addUsers(con,idNum,sc);
                 idNum++;
                 break;
-            
             case "V":
                 System.out.println("Viewing");
                 viewData(con);
@@ -66,9 +63,8 @@ public class Main {
                 System.out.println("Exiting Program");
                 quit = true;
                 sc.close();
-                try {
+                if (!con.isClosed()) {
                     con.close();
-                } catch (SQLException e) {
                 }
                 break;
             
@@ -96,12 +92,11 @@ public class Main {
     }
 
     public static void addUsers(Connection con,int idNum, Scanner sc){
-        String email="";
         String password ="";
         String fname="";
         String lname="";
         System.out.println("Enter your email:");
-        email= sc.nextLine();
+        String email = sc.nextLine();
         System.out.println("Enter password:");
         password= sc.nextLine();
         System.out.println("Enter your first name:");
@@ -128,7 +123,7 @@ public class Main {
             System.out.println();
             
         } catch (SQLException e) {
-                e.printStackTrace();
+                System.out.println("Error: email is already in use");
         }
     }
 
@@ -148,7 +143,7 @@ public class Main {
             }
             
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("No record has been saved");
         }
 
     }
@@ -173,7 +168,7 @@ public class Main {
             ps.executeUpdate();
             
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Error: id not found");
         }
     }
 
@@ -190,7 +185,7 @@ public class Main {
             ps.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Error id not found");
         }
     }
 }
