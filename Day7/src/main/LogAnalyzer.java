@@ -1,4 +1,4 @@
-package com.day6.app;
+package main;
 
 
 import java.io.*;

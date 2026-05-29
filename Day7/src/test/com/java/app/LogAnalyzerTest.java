@@ -1,4 +1,4 @@
-package com.day6.app;
+package com.java;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -9,8 +9,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import com.day6.*;	
+import com.day6.*;
+
+import main.LogAnalyzer;
+
 import java.io.PrintStream;
+import java.nio.channels.FileChannel;
+import java.nio.channels.FileLock;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -19,6 +24,11 @@ import java.nio.file.attribute.PosixFilePermissions;
 import java.util.Set;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FilePermission;
+import java.io.FileWriter;
 import java.io.IOException;
 
 
@@ -30,7 +40,7 @@ class LogAnalyzerTest extends LogAnalyzer {
 	@BeforeEach
 	void setUp() throws Exception {
 		LogAnalyzer log = new LogAnalyzer();
-		//MalformedLogEntryException e = new MalformedLogEntryException("");
+		
 	}
 
 	
@@ -122,22 +132,6 @@ class LogAnalyzerTest extends LogAnalyzer {
 	        }
     }
 	
-	 
-
-	
-//	 @Test
-//	    void testCustomExceptionMessage() {
-//	        // 1. Arrange & Act
-//	        // assertThrows returns the instance of the exception thrown
-//	        MalformedLogEntryException thrown = assertThrows(MalformedLogEntryException.class, () -> {
-//	            throw new MalformedLogEntryException("Missing timestamp brackets");
-//	        });
-//
-//	        // 2. Assert the message
-//	        assertEquals("Missing timestamp brackets", thrown.getMessage());
-//	    }
-	
-
 
 	@Test
     void testMain() {
@@ -161,52 +155,6 @@ class LogAnalyzerTest extends LogAnalyzer {
 
 	}
 	
-//	@Test
-//    void testIOException() throws IOException {
-//
-//     
-//
-//
-//        File file = new File("resources/Test4.log");
-//        PrintStream originalOut = System.out;
-//
-//
-//        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-//        System.setOut(new PrintStream(outputStream));
-//        String args[] = {"resources/New Text Document.log"};
-//        try {
-//            LogAnalyzer.main(args);
-//
-//            String output = outputStream.toString();
-//
-//            assertEquals("Analysis complete. Summary written to summary.txt", output);
-//
-//        } finally {
-//            System.setOut(originalOut);
-//        }
-////        if (file.exists()) {
-////            // Set the first parameter to false to remove read access
-////            // The second parameter 'true' limits this change to the file owner only
-////            boolean result = file.setReadable(false);
-////            
-////            if (result) {
-////                System.out.println("Read access removed successfully.");
-////            } else {
-////                System.out.println("Failed to change permissions.");
-////            }
-////        }
-////        try {
-////            LogAnalyzer.main(args);
-////
-////            String output = outputStream.toString();
-////
-////            assertEquals("Error reading file.", output);
-////
-////        } finally {
-////            System.setOut(originalOut);
-////        }
-//
-//	}
 	
 
 	@Test
@@ -243,7 +191,79 @@ class LogAnalyzerTest extends LogAnalyzer {
 	    		+ "\r\n"
 	    		+ "Earliest Timestamp: 2024-05-10T09:00\r\n"
 	    		+ "Latest Timestamp: 2024-05-10T09:04:18";
+	    
+		expected = expected.replace("\r\n", "\n");
+		content = content.replace("\r\n", "\n");
+		
+		assertEquals(expected.trim(), content.trim());
+
 	    assertEquals(expected, content.trim());
 	}
 
+	@Test
+	void testIO() throws IOException {
+
+        PrintStream originalOut = System.out;
+        String args[] = {"resources/test5.log"};
+
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
+		try (FileOutputStream fos = new FileOutputStream("resources/test5.log");
+				FileChannel channel = fos.getChannel()) {
+	           
+	           FileLock lock = channel.lock();
+	           
+	           
+	           LogAnalyzer.main(args);
+
+	            String output = outputStream.toString();
+
+	            assertEquals("Error reading file.", output.trim());
+
+	         
+	           lock.release();
+	           System.out.println("File lock released.");
+	           
+	       } finally {
+	    	   System.setOut(originalOut);
+	       }
+	}
+	
+	@Test
+	void testWrite() throws FileNotFoundException, IOException {
+		 
+		      File myObj = new File("resources/summary.txt");
+		      myObj.createNewFile();           
+		        
+			 	PrintStream originalOut = System.out;
+		        String args[] = {"resources/server.log"};
+	
+		        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+		        System.setOut(new PrintStream(outputStream));
+			try (FileOutputStream fos = new FileOutputStream("resources/summary.txt");
+					FileChannel channel = fos.getChannel()) {
+		           
+		           FileLock lock = channel.lock();
+		           
+		           
+		           LogAnalyzer.main(args);
+
+		            String output = outputStream.toString();
+		            String expected = "Error writing summary file.\nAnalysis complete. Summary written to summary.txt";
+		            expected = expected.replace("\r\n", "\n");
+		    		output = output.replace("\r\n", "\n");
+		            assertEquals(expected.trim(), output.trim());
+
+		         
+		           lock.release();
+		           System.out.println("File lock released.");
+		           
+		       } finally {
+		    	   System.setOut(originalOut);
+		       }
+		 
+	}
+	
+
+	
 }

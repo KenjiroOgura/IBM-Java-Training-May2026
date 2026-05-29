@@ -1,4 +1,4 @@
-package com.day6.app;
+package main;
 
 public class MathAct {
 
