@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="jakarta.faces.core">
+
+<h:head>
+    <title>Report List</title>
+</h:head>
+
+<h:body>
+
+<h:form>
+
+    <p:dataTable value="#{reportListBean.reports}"
+                 var="report"
+                 rowKey="#{report.id}">
+
+        
+        <p:column headerText="Title">
+            <h:outputText value="#{report.title}" />
+        </p:column>
+
+     
+        <p:column headerText="Detail">
+            <h:outputText value="#{report.detail}" />
+        </p:column>
+
+        
+        <p:column headerText="Actions">
+
+            
+            <p:link outcome="/reportUpdate.xhtml"
+                    value="Update"
+                    styleClass="p-button p-button-warning">
+
+                <f:param name="id" value="#{report.id}" />
+
+            </p:link>
+
+           
+            <p:commandButton value="Delete"
+                             action="#{reportListBean.delete(report.id)}"
+                             ajax="false"
+                             styleClass="p-button p-button-danger"
+                             update="@form" />
+
+        </p:column>
+
+    </p:dataTable>
+
+</h:form>
+
+
+<br/>
+
+<p:link outcome="/reportNew.xhtml"
+        value="Add Report"
+        styleClass="p-button p-button-success" />
+
+</h:body>
+</html>

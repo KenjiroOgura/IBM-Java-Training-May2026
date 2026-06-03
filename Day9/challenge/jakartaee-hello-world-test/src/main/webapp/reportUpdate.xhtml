@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Update Report</title>
+</h:head>
+
+<h:body>
+
+<h2>Update Report</h2>
+
+<h:form>
+	
+<h:inputHidden value="#{reportUpdateBean.id}" />
+	
+    <div class="field">
+        <h:outputLabel value="Title" for="title"/>
+        <p:inputText id="title"
+                     value="#{reportUpdateBean.title}" />
+    </div>
+
+    <div class="field">
+        <h:outputLabel value="Detail" for="detail"/>
+        <p:inputTextarea id="detail"
+                         value="#{reportUpdateBean.detail}"
+                         rows="6"/>
+    </div>
+
+    <p:commandButton value="Update"
+                     ajax="false"
+                     action="#{reportUpdateBean.update}" />
+
+</h:form>
+
+</h:body>
+</html>
